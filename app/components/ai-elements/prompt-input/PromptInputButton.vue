@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { HTMLAttributes } from 'vue'
-import { computed, useSlots } from 'vue'
+import { Comment, computed, Text, toRef, useSlots } from 'vue'
 import { InputGroupButton } from '@/components/ui/input-group'
 import { cn } from '@/lib/utils'
 
@@ -38,7 +38,9 @@ const computedSize = computed(() => {
   return validChildren.length > 1 ? 'sm' : 'icon-sm'
 })
 
-const { size, variant, class: _, ...restProps } = props
+const variant = toRef(props, 'variant')
+
+const { size, variant: _, class: __, ...restProps } = props
 </script>
 
 <template>
