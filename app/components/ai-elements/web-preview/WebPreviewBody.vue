@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { IframeHTMLAttributes, VNodeChild } from 'vue'
-import { computed, useAttrs } from 'vue'
+import { computed } from 'vue'
 import { cn } from '@/lib/utils'
 import { useWebPreviewContext } from './context'
 
@@ -15,7 +15,6 @@ defineSlots<{
   loading: () => VNodeChild
 }>()
 
-const attrs = useAttrs()
 const { url } = useWebPreviewContext()
 
 const frameSrc = computed(() => (props.src ?? url.value) || undefined)
@@ -28,7 +27,7 @@ const frameSrc = computed(() => (props.src ?? url.value) || undefined)
       sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-presentation"
       :src="frameSrc"
       title="Preview"
-      v-bind="attrs"
+      v-bind="$attrs"
     />
     <slot name="loading" />
   </div>

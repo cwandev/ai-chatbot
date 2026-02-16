@@ -1,14 +1,18 @@
 <script setup lang="ts">
-import type { ToolUIPart } from 'ai'
+import type { DynamicToolUIPart, ToolUIPart } from 'ai'
 import type { HTMLAttributes } from 'vue'
 import { computed } from 'vue'
 import { cn } from '@/lib/utils'
 import { CodeBlock } from '../code-block'
 
-const props = defineProps<{
-  input: ToolUIPart['input']
+type ToolPart = ToolUIPart | DynamicToolUIPart
+
+interface Props extends /* @vue-ignore */ HTMLAttributes {
+  input: ToolPart['input']
   class?: HTMLAttributes['class']
-}>()
+}
+
+const props = defineProps<Props>()
 
 const formattedInput = computed(() => {
   return JSON.stringify(props.input, null, 2)

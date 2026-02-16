@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { HTMLAttributes } from 'vue'
-import { computed, useAttrs } from 'vue'
+import { computed } from 'vue'
 import { cn } from '@/lib/utils'
 
 const props = defineProps<{
@@ -8,12 +8,11 @@ const props = defineProps<{
 }>()
 
 const classes = computed(() => cn('font-medium text-foreground text-sm', props.class))
-const attrs = useAttrs()
 </script>
 
 <template>
   <p
-    v-bind="attrs"
+    v-bind="$attrs"
     :class="classes"
   >
     <slot />

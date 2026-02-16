@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import type { CSSProperties } from 'vue'
+import type { CSSProperties, HTMLAttributes } from 'vue'
 import { motion } from 'motion-v'
 import { computed, useSlots } from 'vue'
 import { cn } from '@/lib/utils'
 
 export interface TextShimmerProps {
   as?: keyof HTMLElementTagNameMap
-  class?: string
+  class?: HTMLAttributes['class']
   duration?: number
   spread?: number
 }

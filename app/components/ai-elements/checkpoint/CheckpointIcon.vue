@@ -1,18 +1,15 @@
 <script lang="ts" setup>
 import type { HTMLAttributes } from 'vue'
 import { BookmarkIcon } from 'lucide-vue-next'
-import { useSlots } from 'vue'
 import { cn } from '@/lib/utils'
 
 const props = defineProps<{
   class?: HTMLAttributes['class']
 }>()
-
-const slots = useSlots()
 </script>
 
 <template>
-  <slot v-if="slots.default" />
+  <slot v-if="$slots.default" />
 
   <BookmarkIcon
     v-else
