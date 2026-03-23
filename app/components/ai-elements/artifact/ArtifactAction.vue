@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { LucideIcon } from 'lucide-vue-next'
+import type { HTMLAttributes } from 'vue'
 import type { ButtonVariants } from '@/components/ui/button'
 import { computed } from 'vue'
 import { Button } from '@/components/ui/button'
@@ -7,7 +8,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/comp
 import { cn } from '@/lib/utils'
 
 interface ArtifactActionProps {
-  class?: string
+  class?: HTMLAttributes['class']
   tooltip?: string
   label?: string
   variant?: ButtonVariants['variant']

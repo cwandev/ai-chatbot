@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { HTMLAttributes } from 'vue'
-import { ref, useAttrs, watch } from 'vue'
+import { ref, watch } from 'vue'
 import { Input } from '@/components/ui/input'
 import { cn } from '@/lib/utils'
 import { useWebPreviewContext } from './context'
@@ -14,7 +14,6 @@ const props = withDefaults(defineProps<Props>(), {
   placeholder: 'Enter URL...',
 })
 
-const attrs = useAttrs()
 const context = useWebPreviewContext()
 
 const inputValue = ref(context.url.value)
@@ -38,7 +37,7 @@ function handleKeydown() {
     data-testid="web-preview-url-input"
     :class="cn('h-8 flex-1 text-sm', props.class)"
     :placeholder="props.placeholder"
-    v-bind="attrs"
+    v-bind="$attrs"
     @keydown.enter="handleKeydown"
   />
 </template>

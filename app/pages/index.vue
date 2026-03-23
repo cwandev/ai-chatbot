@@ -13,8 +13,6 @@ import {
   PromptInputActionMenu,
   PromptInputActionMenuContent,
   PromptInputActionMenuTrigger,
-  PromptInputAttachment,
-  PromptInputAttachments,
   PromptInputBody,
   PromptInputButton,
   PromptInputFooter,
@@ -31,6 +29,7 @@ import {
 } from '@/components/ai-elements/prompt-input'
 import { Reasoning, ReasoningContent, ReasoningTrigger } from '@/components/ai-elements/reasoning'
 import { Source, Sources, SourcesContent, SourcesTrigger } from '@/components/ai-elements/sources'
+import PromptInputAttachmentsDisplay from '@/components/prompt-input-attachments-display.vue'
 
 const models = [
   { name: 'GPT 4o', value: 'openai/gpt-4o' },
@@ -223,11 +222,7 @@ function handleRegenerate() {
 
       <PromptInput class="mt-4" global-drop multiple>
         <PromptInputHeader>
-          <PromptInputAttachments>
-            <template #default="{ file }">
-              <PromptInputAttachment :file="file" />
-            </template>
-          </PromptInputAttachments>
+          <PromptInputAttachmentsDisplay />
         </PromptInputHeader>
 
         <PromptInputBody>

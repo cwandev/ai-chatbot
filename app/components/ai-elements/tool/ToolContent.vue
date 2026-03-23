@@ -3,9 +3,13 @@ import type { HTMLAttributes } from 'vue'
 import { CollapsibleContent } from '@/components/ui/collapsible'
 import { cn } from '@/lib/utils'
 
-const props = defineProps<{
+type ToolContentProps = InstanceType<typeof CollapsibleContent>['$props']
+
+interface Props extends /* @vue-ignore */ ToolContentProps {
   class?: HTMLAttributes['class']
-}>()
+}
+
+const props = defineProps<Props>()
 </script>
 
 <template>

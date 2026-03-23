@@ -1,6 +1,6 @@
 <!-- StatusBadge.vue -->
 <script setup lang="ts">
-import type { ToolUIPart } from 'ai'
+import type { DynamicToolUIPart, ToolUIPart } from 'ai'
 import type { Component } from 'vue'
 import {
   CheckCircleIcon,
@@ -11,12 +11,14 @@ import {
 import { computed } from 'vue'
 import { Badge } from '@/components/ui/badge'
 
+export type ToolPart = ToolUIPart | DynamicToolUIPart
+
 const props = defineProps<{
-  state: ToolUIPart['state']
+  state: ToolPart['state']
 }>()
 
 const label = computed(() => {
-  const labels: Record<ToolUIPart['state'], string> = {
+  const labels: Record<ToolPart['state'], string> = {
     'input-streaming': 'Pending',
     'input-available': 'Running',
     'approval-requested': 'Awaiting Approval',
@@ -29,7 +31,7 @@ const label = computed(() => {
 })
 
 const icon = computed<Component>(() => {
-  const icons: Record<ToolUIPart['state'], Component> = {
+  const icons: Record<ToolPart['state'], Component> = {
     'input-streaming': CircleIcon,
     'input-available': ClockIcon,
     'approval-requested': ClockIcon,
@@ -42,16 +44,16 @@ const icon = computed<Component>(() => {
 })
 
 const iconClass = computed(() => {
-  const classes: Record<string, boolean> = {
-    'size-4': true,
-    'animate-pulse': props.state === 'input-available',
-    'text-yellow-600': props.state === 'approval-requested',
-    'text-blue-600': props.state === 'approval-responded',
-    'text-green-600': props.state === 'output-available',
-    'text-red-600': props.state === 'output-error',
-    'text-orange-600': props.state === 'output-denied',
+  const classes: Record<ToolPart['state'], string> = {
+    'input-streaming': 'size-4',
+    'input-available': 'size-4 animate-pulse',
+    'approval-requested': 'size-4 text-yellow-600',
+    'approval-responded': 'size-4 text-blue-600',
+    'output-available': 'size-4 text-green-600',
+    'output-error': 'size-4 text-red-600',
+    'output-denied': 'size-4 text-orange-600',
   }
-  return classes
+  return classes[props.state]
 })
 </script>
 

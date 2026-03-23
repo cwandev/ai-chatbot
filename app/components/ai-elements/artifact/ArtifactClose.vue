@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { HTMLAttributes } from 'vue'
 import type { ButtonVariants } from '@/components/ui/button'
 import { X } from 'lucide-vue-next'
 import { computed } from 'vue'
@@ -6,7 +7,7 @@ import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 
 interface ArtifactCloseProps {
-  class?: string
+  class?: HTMLAttributes['class']
   variant?: ButtonVariants['variant']
   size?: ButtonVariants['size']
 }

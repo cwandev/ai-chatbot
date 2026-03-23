@@ -41,7 +41,7 @@ export default defineLazyEventHandler(async () => {
 
     const result = streamText({
       model: gateway(selectedModel),
-      messages: convertToModelMessages(messages),
+      messages: await convertToModelMessages(messages),
       system: DEFAULT_SYSTEM_PROMPT,
     })
 
